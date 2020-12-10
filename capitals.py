@@ -1,3 +1,5 @@
+import random
+
 # an array of state dictionaries
 states = [
 {
@@ -151,3 +153,32 @@ states = [
     "name": "Wyoming",
     "capital": "Cheyenne"
 }]
+
+
+random.shuffle(states)
+
+
+
+
+def game_start():
+    num_correct = 0
+    num_wrong = 0
+    print('Welcome to Guess That State Capital!')
+    for i in range(0, len(states)):
+        capital_input = input(f'What is the capital of {states[i]["name"]}? EXAMPLE(Toronto): ')
+        if capital_input == states[i]['capital']:
+            num_correct = num_correct + 1
+            print(f'Correct! Number Correct is {num_correct}. Number Wrong is {num_wrong}.')
+        else:
+            num_wrong = num_wrong + 1
+            print(f'Wrong! Number Correct is {num_correct}. Number Wrong is {num_wrong}.')
+    end_game = input(f'You got {num_correct} correct and {num_wrong} wrong! Would you like to play again? (yes or no) : ')
+    if end_game == 'yes':
+        num_correct = 0
+        num_wrong = 0
+        game_start()
+    else:
+        print('Thanks for playing!')
+        exit()
+
+game_start()
